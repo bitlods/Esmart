@@ -5,7 +5,7 @@
 <title>Product Form</title>
 </head>
 <body>
-<form th:action="@{/product/save}" method="post" th:object="${p}">
+<form th:action="@{/product/save}" method="post" th:object="${product}">
 <h1>Product detials</h1>
 <input type="hidden" th:field="*{id}">
 Enter Product Name:<input type="text" th:field="*{name}"><br><br>

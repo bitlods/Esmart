@@ -4,6 +4,7 @@ package com.Tharun.Product.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.Tharun.Product.Entity.product;
+import com.Tharun.Product.Entity.Product;
 import com.Tharun.Product.Service.ProductService;
 
 
-@RestController
+@Controller
 @RequestMapping("/product")
 public class ProductController {
 	
@@ -25,21 +26,21 @@ public class ProductController {
 	
 	@GetMapping("/form")
 	public String productForm(Model model) {
-		product p=new product();
+		Product p=new Product();
 		model.addAttribute("product", p);
-		return "Product-form";	
+		return "product-form";	
 	}
 
 	@PostMapping("/save")
-	public String saveEmployee(@ModelAttribute product p,RedirectAttributes attr) {
+	public String saveEmployee(@ModelAttribute Product p,RedirectAttributes attr) {
 		sev.saveProduct(p);
 		attr.addFlashAttribute("success","Saved Successfully");
-		return "redirect:/product/plist";	
+		return "redirect:/product/plists";	
 	}
 	
-	@GetMapping("/plist")
+	@GetMapping("/plists")
     public String  getEmployeeList(Model model) {
-    	List<product> plist=sev.getAllEmployee();
+    	List<Product> plist=sev.getAllEmployee();
     	model.addAttribute("allproduct",plist);
     	return "plist";
     }
